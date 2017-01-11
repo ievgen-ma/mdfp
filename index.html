@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html ng-app="mdfp" ng-cloak>
+  <head>
+    <meta charset="UTF-8">
+    <title>Material Design Font-Picker</title>
+    <meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <link rel="stylesheet"href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"crossorigin="anonymous">
+  </head>
+  <body ng-controller="PickerController as picker">
+    <div class="well">
+      <div class="row">
+        <div class="col-md-2">
+          <div class="form-group">
+            <input type="text" class="form-control" ng-model="searchFont" placeholder="Search"/>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8">
+          <div class="row">
+            <div class="col-xs-6 col-md-3"ng-repeat="font in picker.fonts | filter: searchFont | categoryFilter:picker.currentCategory | variantFilter:picker.currentVariant | subsetFilter:picker.currentSubset | startFrom:picker.fontCurrentPage*picker.fontPageSize | limitTo:picker.fontPageSize">
+              <div class="panel panel-default">
+                <div class="panel-body" style="padding:0px;">
+                  <input style="width:100%;font-size:65px;border:0px;font-family:{{font.family}}" type="text" picker-font family="font.family" ng-model="picker.text"/>
+                </div>
+                <div class="panel-footer"><span style="font-size:12px;">{{font.family}}</span><button class="btn btn-default pull-right btn-xs" ng-click="picker.showDg(font)">select</button></div>
+              </div>
+            </div>
+          </div>
+          <nav>
+            <ul class="pager">
+              <li><a href="javascript:void(0);"ng-hide="picker.fontCurrentPage == 0"ng-click="picker.fontCurrentPage=picker.fontCurrentPage-1">Previous</a></li>
+              <li><a href="javascript:void(0);"ng-hide="picker.fontCurrentPage >= picker.fonts.length/picker.fontPageSize - 1"ng-click="picker.fontCurrentPage=picker.fontCurrentPage+1">Next</a></li>
+            </ul>
+          </nav>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="category">Categories</label><br>
+            <div class="row">
+              <div class="col-xs-4" ng-repeat="category in picker.fontsCategories | orderBy:category">
+                <button style="margin:4px;" ng-class="{'btn-primary':picker.activeCategoryIndexEvt($index)}" class="btn btn-default btn-xs btn-block" ng-click="picker.setCategoryFilter($index, category)"><span style="font-family:{{category}};">{{category}}</span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="category">Variants</label><br>
+            <div class="row">
+              <div class="col-xs-3" ng-repeat="variant in picker.fontsVariants | orderBy:variant">
+                <button style="margin:4px;" ng-class="{'btn-primary':picker.activeVariantIndexEvt($index)}" class="btn btn-default btn-xs btn-block" ng-click="picker.setVariantFilter($index, variant)"><span style="font-family:{{variant}};">{{variant}}</span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="category">Subsets</label><br>
+            <div class="row">
+              <div class="col-xs-3" ng-repeat="subset in picker.fontsSubsets | orderBy:subset">
+                <button style="margin:4px;" ng-class="{'btn-primary':picker.activeSubsetIndexEvt($index)}" class="btn btn-default btn-xs btn-block" ng-click="picker.setSubsetFilter($index, subset)"><span style="font-family:{{varisubsetant}};">{{subset}}</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+      <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-animate.min.js"></script>
+      <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-aria.min.js"></script>
+      <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-messages.min.js"></script>
+      <script src="http://ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
+      <script src="ui-bootstrap-tpls-2.4.0.min.js"></script>
+      <script src="index.js"></script>
+    </body>
+  </html>

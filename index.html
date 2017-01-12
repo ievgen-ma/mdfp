@@ -14,11 +14,21 @@
             <input type="text" class="form-control" ng-model="searchFont" placeholder="Search"/>
           </div>
         </div>
+        <div class="col-md-2">
+          <div class="form-group">
+            <select ng-model="picker.orderByFont">
+              <option value="family">Sort By Name</option>
+              <option value="category">Sort By Categories</option>
+              <option value="variants">Sort By Variants</option>
+              <option value="subsets">Sort By Subsets</option>
+            </select>
+          </div>
+        </div>
       </div>
       <div class="row">
         <div class="col-md-8">
           <div class="row">
-            <div class="col-xs-6 col-md-3"ng-repeat="font in picker.fonts | filter: searchFont | categoryFilter:picker.currentCategory | variantFilter:picker.currentVariant | subsetFilter:picker.currentSubset | startFrom:picker.fontCurrentPage*picker.fontPageSize | limitTo:picker.fontPageSize">
+            <div class="col-xs-6 col-md-3"ng-repeat="font in picker.fonts | orderBy: picker.orderByFont | filter: searchFont | categoryFilter:picker.currentCategory | variantFilter:picker.currentVariant | subsetFilter:picker.currentSubset | startFrom:picker.fontCurrentPage*picker.fontPageSize | limitTo:picker.fontPageSize">
               <div class="panel panel-default">
                 <div class="panel-body" style="padding:0px;">
                   <input style="width:100%;font-size:65px;border:0px;font-family:{{font.family}}" type="text" picker-font family="font.family" ng-model="picker.text"/>

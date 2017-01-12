@@ -127,6 +127,7 @@
     picker.fontsSubsets = fontService.subsets;
     picker.fontCurrentPage = 0;
     picker.fontPageSize = 12;
+    picker.orderByFont = "family";
 
     picker.currentCategory = null;
     picker.setCategoryFilter = function(index, category) {

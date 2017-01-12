@@ -24,6 +24,15 @@
             </select>
           </div>
         </div>
+        <div class="col-md-2">
+          <div class="form-group">
+            <ul class="list-inline">
+              <li>a</li>
+              <li><input type="range" min="50" max="80" ng-model="fontSize" /></li>
+              <li>A</li>
+            </ul>
+          </div>
+        </div>
       </div>
       <div class="row">
         <div class="col-md-8">
@@ -31,7 +40,7 @@
             <div class="col-xs-6 col-md-3"ng-repeat="font in picker.fonts | orderBy: picker.orderByFont | filter: searchFont | categoryFilter:picker.currentCategory | variantFilter:picker.currentVariant | subsetFilter:picker.currentSubset | startFrom:picker.fontCurrentPage*picker.fontPageSize | limitTo:picker.fontPageSize">
               <div class="panel panel-default">
                 <div class="panel-body" style="padding:0px;">
-                  <input style="width:100%;font-size:65px;border:0px;font-family:{{font.family}}" type="text" picker-font family="font.family" ng-model="picker.text"/>
+                  <input style="width:100%;font-size:{{fontSize}}px;border:0px;font-family:{{font.family}}" type="text" picker-font family="font.family" ng-model="picker.text"/>
                 </div>
                 <div class="panel-footer"><span style="font-size:12px;">{{font.family}}</span><button class="btn btn-default pull-right btn-xs" ng-click="picker.showDg(font)">select</button></div>
               </div>

@@ -24,6 +24,14 @@
             </select>
           </div>
         </div>
+        <div class="col-md-2 text-center">
+          <div class="form-group">
+            <div class="btn-group" role="group">
+              <button ng-click="picker.setFontView('grid')" ng-class="{'btn-primary':picker.activeFontView('grid')}" type="button" class="btn btn-default"><span class="glyphicon glyphicon-th" aria-hidden="true"></span></button>
+              <button ng-click="picker.setFontView('list')" ng-class="{'btn-primary':picker.activeFontView('list')}" type="button" class="btn btn-default"><span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span></button>
+            </div>
+          </div>
+        </div>
         <div class="col-md-2">
           <div class="form-group">
             <ul class="list-inline">
@@ -37,7 +45,7 @@
       <div class="row">
         <div class="col-md-8">
           <div class="row">
-            <div class="col-xs-6 col-md-3"ng-repeat="font in picker.fonts | orderBy: picker.orderByFont | filter: searchFont | categoryFilter:picker.currentCategory | variantFilter:picker.currentVariant | subsetFilter:picker.currentSubset | startFrom:picker.fontCurrentPage*picker.fontPageSize | limitTo:picker.fontPageSize">
+            <div class="col-xs-6 col-md-{{picker.fontViewSize}}"ng-repeat="font in picker.fonts | orderBy: picker.orderByFont | filter: searchFont | categoryFilter:picker.currentCategory | variantFilter:picker.currentVariant | subsetFilter:picker.currentSubset | startFrom:picker.fontCurrentPage*picker.fontPageSize | limitTo:picker.fontPageSize">
               <div class="panel panel-default">
                 <div class="panel-body" style="padding:0px;">
                   <input style="width:100%;font-size:{{fontSize}}px;border:0px;font-family:{{font.family}}" type="text" picker-font family="font.family" ng-model="picker.text"/>

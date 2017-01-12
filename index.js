@@ -181,6 +181,22 @@
       }
       return false;
     };
+    picker.fontView = 'grid';
+    picker.fontViewSize = 3;
+    picker.activeFontView = function(view) {
+      if (picker.fontView == view) {
+        return true;
+      }
+      return false;
+    };
+    picker.setFontView = function(view) {
+      picker.fontView = view;
+      if (view == 'list') {
+        picker.fontViewSize = 12;
+      } else {
+        picker.fontViewSize = 3;
+      }
+    };
     picker.showDg = function(font) {
       $uibModal.open({
         template: '<div class="modal-header">' +
